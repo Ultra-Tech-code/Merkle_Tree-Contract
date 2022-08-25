@@ -11,9 +11,14 @@ contract Whitelist {
         merkleRoot = _merkleRoot;
     }
 
-    function checkInWhitelist(bytes32[] calldata proof, uint64 maxAllowanceToMint) view public returns (bool) {
-        bytes32 leaf = keccak256(abi.encode(msg.sender, maxAllowanceToMint));
+    mapping(address => bool) public whitelistClaimed;
+
+    function checkInWhitelist(bytes32[] calldata proof) public returns (bool) {
+        require(!whitelistClaimed[msg.sender], "Address already claimed");
+        //leaf-> hash of the claimimng address
+        bytes32 leaf = keccak256(abi.encode(msg.sender));
         bool verified = MerkleProof.verify(proof, merkleRoot, leaf);
+        whitelistClaimed[msg.sender] = true;
         return verified;
     }
     
