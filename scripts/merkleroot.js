@@ -3,6 +3,8 @@ const { ethers } = require("hardhat");
 const keccak256 = require("keccak256");
 const { MerkleTree } = require("merkletreejs");
 
+
+
     const list = [
       "0x12896191de42EF8388f2892Ab76b9a728189260A",
       "0x311350f1c7Ba0F1749572Cc8A948Dd7f9aF1f42a",
@@ -14,12 +16,14 @@ const { MerkleTree } = require("merkletreejs");
     // Make sure to sort the tree so that it can be produced deterministically regardless
     // of the order of the input list
     const leafNodes = list.map(addr => keccak256(addr));
-    const merkleTree = new MerkleTree(leafNodes, keccak256, {sortLeaves: true, sortPairs: true});
+    const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true});
     // Compute the Merkle Root
     const root = merkleTree.getHexRoot();
     console.log('Whitelist Merkle Tree\n', merkleTree.toString());
     console.log("Root Hash: ", root);
-    //module.exports = merkleTree;
+    module.exports = {merkleTree};
+
+  
     
 
     

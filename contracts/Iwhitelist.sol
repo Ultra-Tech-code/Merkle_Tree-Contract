@@ -3,6 +3,6 @@
 pragma solidity ^0.8.9;
 
 interface Iwhitelist{
-    function checkInWhitelist(bytes32[] calldata proof, uint64 maxAllowanceToMint) view external returns (bool);
+    function checkInWhitelist(bytes32[] calldata proof) view external returns (bool);
 
 }

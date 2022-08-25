@@ -8,7 +8,7 @@ const keccak256 = require("keccak256");
 
   async function main() {
    
-    const addressToVerify = "0x311350f1c7Ba0F1749572Cc8A948Dd7f9aF1f42a";
+    const addressToVerify = "0x12896191de42EF8388f2892Ab76b9a728119265A";
    
     const CONTRACTADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
     const Iwhitelist = await ethers.getContractAt("Iwhitelist", CONTRACTADDRESS);
