@@ -19,6 +19,9 @@ const { MerkleTree } = require("merkletreejs");
     const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true});
     // Compute the Merkle Root
     const root = merkleTree.getHexRoot();
+    //const leaf = keccak256(abi.encode(msg.sender));
+    const proof = merkleTree.getHexProof(leafNodes);
+    console.log('Whitelist Merkle Tree\n', proof)
     console.log('Whitelist Merkle Tree\n', merkleTree.toString());
     console.log("Root Hash: ", root);
     module.exports = {merkleTree};
